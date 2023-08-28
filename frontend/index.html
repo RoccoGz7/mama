@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link
+        rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"> -->
+        <title>Proyecto Generacion T</title>
+    </head>
+
+    <body>
+        <div id="particles-js"></div>
+
+        <div class="container-change-options">
+            <button id="btn-change-option" class="change-options">
+                <div></div>
+            </button>
+        </div>
+
+        <main>
+            <div id='main' class="containerMain">
+                <h1 class="animate__animated animate__bounceInDown">
+                    <span>T</span>racking Proyects</h1>
+                <div class="bar">
+                    <div class="search-bar animate__animated animate__bounceInDown">
+                        <input type="text" placeholder="Buscar Proyectos" id="searchProyect">
+                        <i id='searchIcon' class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                </div>
+                <ol id="proyects"></ol>
+                <div class="container-change-options-2">
+                    <div class="change-options-2"></div>
+                </div>
+            </div>
+        </main>
+
+        <!-- sweetalert, para alertas personalizadas -->
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <!-- particles js -->
+        <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+        <!-- fontawesome icon -->
+        <script src="https://kit.fontawesome.com/60642245a2.js" crossorigin="anonymous"></script>
+        <!-- luxon, para fechas -->
+        <script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
+    </body>
+
+</html>

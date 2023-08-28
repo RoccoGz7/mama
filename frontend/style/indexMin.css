@@ -1,0 +1,115 @@
+@media only screen and (max-width:600px) {
+
+    .change-options {
+        display: none;
+    }
+
+    main {
+        background-image: url('https://www.marazzi.es/media/filer_public_thumbnails/filer_public/d2/0d/d20d920a-ecbd-4eac-9709-00b4c8cf0f9f/marazzi_plaza_015_ufficio.jpg__1920x0_q75_crop_subsampling-2.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        width: 100vw;
+        border-radius: 0;
+        box-shadow: 0 0 12px .5px #888, 0 0 6px 1.5px #aaa;
+        margin: 0;
+    }
+    
+    .containerMain {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        color: #4b6584;
+        backdrop-filter: brightness(.65);
+        border-radius: 0;
+        padding: 0 1rem;
+    }
+    
+    h1 {
+        font-family: 'Lato';
+        font-size: 3em;
+        font-weight: bold;
+        margin-bottom: .6em;
+        letter-spacing: .2rem;
+        text-shadow: .1rem -.2rem .2rem #333;
+        margin-top: 2rem;
+    }
+    
+    input {
+        width: 100%;
+        margin: auto;
+        padding: .8rem 1.4rem;
+        border-radius: 2rem;
+        font-family: 'Montserrat';
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        background: #f7f1e3;
+    }
+    
+    input:focus {
+        box-shadow: 0 0 8px .6px #444;
+    }
+    
+    li {
+        font-family: 'Poppins';
+        font-size: 1rem;
+        font-weight: bold;
+        padding: .8rem 1rem;
+        background: #d1d8e0;
+        display: flex;
+        cursor: pointer;
+        opacity: .85;
+        min-height: 2.8rem;
+        max-height: 2.8rem;
+        margin: .08rem 0;
+        border-radius: .6rem;
+    }
+
+    ol {
+        box-shadow: none;
+        max-height: 49.5vh;
+        overflow-y: auto;
+    }
+
+    .proyect-date {
+        width: 20%;
+        text-align: center;
+        letter-spacing: .01rem;
+        font-size: .85rem;
+    }
+    
+    .proyect-name {
+        width: 80%;
+        text-align: left;
+        padding-left: 3rem;
+        font-size: .85rem;
+        text-transform: capitalize;
+        letter-spacing: .01rem;
+    }
+
+    .search-bar i {
+        color: #4b6584;
+        font-size: 1.2rem;
+        position: absolute;
+        right: 0;
+        margin-right: 1.2rem;
+        margin-bottom: .9rem;
+        padding-left: none;
+    }
+
+    .container-change-options-2 {
+        display: flex;
+        justify-content: center;
+        margin-top: 6vh;
+        margin-bottom: 3vh;
+    }
+    .change-options-2 {
+        width: 3.5rem;
+        height: 3.5rem;
+        background: #4b6584;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+}
