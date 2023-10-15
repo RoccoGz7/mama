@@ -2,7 +2,7 @@
 class ProyectService {
 
     constructor() {
-        this.URI = `${process.env.URL}/api/proyects`;
+        this.URI = `https://traking-projects.up.railway.app/api/proyects`;
     }
 
     async getProyects() {
