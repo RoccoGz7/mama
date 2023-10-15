@@ -1,7 +1,7 @@
 /*!********************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./frontend/style/normalize.css ***!
   \********************************************************************************/
-@import url(https://fonts.googleapis.com/css2?family=Ephesis&family=Lato&family=Montserrat:wght@400;700&family=Open+Sans:ital,wght@0,400;1,300&family=Poppins&family=Roboto+Slab&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Ephesis&family=Lato&family=Montserrat:ital,wght@0,400;0,500;0,700;0,900;1,900&family=Open+Sans:ital,wght@0,400;1,300&family=Poppins&family=Roboto+Slab&family=Roboto:wght@300&display=swap);
 /*!************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./frontend/style/normalize.css (1) ***!
   \************************************************************************************/
@@ -226,6 +226,473 @@ button {
 /*!****************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./frontend/style/index.css ***!
   \****************************************************************************/
+body {
+  background: #f7f1e3;
+  /* background-image: url("https://www.officepanamapro.com/wp-content/uploads/2020/10/Errores-en-el-dise%C3%B1o-de-oficinas-que-se-deben-evitar.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover; */
+  /* background-size: 90vw; */
+}
 
+main {
+  background-image: url("https://www.marazzi.es/media/filer_public_thumbnails/filer_public/d2/0d/d20d920a-ecbd-4eac-9709-00b4c8cf0f9f/marazzi_plaza_015_ufficio.jpg__1920x0_q75_crop_subsampling-2.jpg");
+  /* background-image: url("https://toribioachaval.com/wp-content/uploads/2021/10/alquiler-de-oficinas-en-capital-federal-Toribio-Achaval.jpg"); */
+  background-size: cover;
+  margin: 5.2rem;
+  margin-top: 1rem;
+  height: 84vh;
+  border-radius: 0.6rem;
+  margin-bottom: 0;
+  /* background-repeat: no-repeat; */
+  background-position: center;
+}
+
+.containerMain {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 8.5rem;
+  color: #4b6584;
+  backdrop-filter: brightness(0.8);
+  border-radius: 0.6rem;
+  box-shadow: 0 0 12px 0.5px #888, 0 0 6px 1.5px #aaa;
+}
+
+h1 {
+  font-family: "Lato";
+  font-size: 4.8em;
+  font-weight: bold;
+  margin-bottom: 0.6em;
+  letter-spacing: 0.2rem;
+  text-shadow: 0.1rem -0.2rem 0.2rem #333;
+  /* margin: auto; */
+  /* color: #4bcffa; */
+  /* color: #0fbcf9; */
+
+  
+}
+
+input {
+  width: 100%;
+  margin: auto;
+  padding: 1rem 2.2rem;
+  border-radius: 2rem;
+  font-family: "Montserrat";
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1.6rem;
+  background: #f7f1e3;
+  opacity: .9;
+}
+
+input:focus {
+  box-shadow: 0 0 8px 0.6px #444;
+}
+
+li {
+  font-family: "Poppins";
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 0.8rem 1rem;
+  background: #d1d8e0;
+  display: flex;
+  cursor: pointer;
+  opacity: 0.75;
+  min-height: 3rem;
+  max-height: 3rem;
+}
+
+li:hover {
+  background: #a5b1c2;
+}
+
+#particles-js {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: -1;
+}
+
+.search-bar {
+  display: flex;
+  width: min-content;
+  width: 50rem;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.search-bar i {
+  color: #4b6584;
+  font-size: 1.4rem;
+  position: absolute;
+  right: 0;
+  margin-right: 1.2rem;
+  margin-bottom: 1.8rem;
+}
+
+input:focus {
+  font-weight: normal;
+  color: #4b6584;
+  font-weight: 500;
+}
+
+.text-efect {
+  display: block;
+  white-space: nowrap;
+  border-right: 4px solid #000;
+  width: 15ch;
+  animation: typing 2s steps(15) alternate infinite,
+    blink 0.5s infinite step-end alternate;
+  overflow: hidden;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+input:focus::placeholder {
+  font-weight: bold;
+}
+
+.proyect-date {
+  width: 20%;
+  text-align: center;
+  letter-spacing: 0.02rem;
+  font-size: 1rem;
+  color: #2f6382;
+}
+
+.proyect-name {
+  width: 80%;
+  text-align: left;
+  padding-left: 3rem;
+  font-size: 1rem;
+  text-transform: capitalize;
+  letter-spacing: 0.02rem;
+  color: #2f6382;
+}
+
+.title-alert {
+  font-family: "Montserrat";
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #f7f1e3;
+  text-transform: capitalize;
+}
+
+.information-proyect {
+  font-family: "Poppins";
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #f7f1e3;
+}
+
+.information-proyect-button {
+  background: #d1d8e0;
+  padding: 1rem 1.2rem;
+  font-family: "Montserrat";
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 0.4rem;
+  margin: 1rem 0;
+  color: #333;
+}
+
+.information-proyect-button:hover {
+  background: #a5b1c2;
+}
+
+ol {
+  box-shadow: 0 0 4px 0.05px #4b6584;
+  max-height: 44.5vh;
+  overflow-y: auto;
+}
+
+h1 span {
+  font-size: 1.28em;
+  letter-spacing: -0.6rem;
+  color: #3c6382;
+  font-family: "Lato";
+  font-weight: bold;
+  filter: brightness(1.1);
+}
+
+.bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-options {
+  display: flex;
+  align-items: center;
+}
+
+.change-options {
+  width: 4.4rem;
+  height: 2.2rem;
+  border-radius: 4rem;
+  background: #3c6382;
+  padding: 0 0.2rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 1.2rem;
+  margin-left: 1.6rem;
+}
+
+.change-options div {
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: #f7f1e3;
+  transform: translate(0, 0);
+}
+
+.change-page {
+  animation-name: change-option-page;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+.change-search {
+  animation-name: change-option-search;
+  animation-duration: 0.2s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes change-option-page {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(1.8rem, 0);
+  }
+}
+
+@keyframes change-option-search {
+  0% {
+    transform: translate(1.8rem, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* change options */
+
+.main-container-change {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-title-options {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.container-title-options h2 {
+  font-family: "Montserrat";
+  font-size: 2rem;
+  color: #0984e3;
+  letter-spacing: 0.02rem;
+  background: rgba(255, 2555, 255, 0.25);
+  background: linear-gradient(to right, #0984e3, #74b9ff);
+  padding: 0.4rem 2.6rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 2px 0.05px #0984e3;
+  color: #f7f1e3;
+}
+
+.change-option {
+  color: #f7f1e3;
+  text-shadow: none;
+  text-shadow: 1px -1px 10px #74b9ff;
+}
+
+.change-option span {
+  color: #f7f1e3;
+  filter: none;
+}
+
+.container-main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 8.5rem;
+  backdrop-filter: brightness(0.6);
+  border-radius: 0.6rem;
+  box-shadow: none;
+  box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.2);
+}
+
+.container-options {
+  display: flex;
+  flex-wrap: wrap;
+  width: 75%;
+  margin: auto;
+  height: 40vh;
+  border-radius: 0.3rem;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 12px 0.5px #888;
+}
+
+.btn-append-proyect,
+.btn-remove-proyect {
+  font-family: "Lato";
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  color: #f7f1e3;
+  margin-top: 2.5rem;
+  margin-left: 2.5rem;
+  max-height: 6.5rem;
+  max-width: 6.5rem;
+  min-height: 6.5rem;
+  min-width: 6.5rem;
+  background: linear-gradient(45deg, #0984e3, #74b9ff);
+  cursor: pointer;
+}
+
+.btn-append-proyect:hover,
+.btn-remove-proyect:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 12px 0.5px #888, 0 0 6px 1.5px #aaa;
+}
+
+/*!*******************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./frontend/style/indexMin.css ***!
+  \*******************************************************************************/
+@media only screen and (max-width:600px) {
+
+    .change-options {
+        display: none;
+    }
+
+    main {
+        background-image: url('https://www.marazzi.es/media/filer_public_thumbnails/filer_public/d2/0d/d20d920a-ecbd-4eac-9709-00b4c8cf0f9f/marazzi_plaza_015_ufficio.jpg__1920x0_q75_crop_subsampling-2.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        width: 100vw;
+        border-radius: 0;
+        box-shadow: 0 0 12px .5px #888, 0 0 6px 1.5px #aaa;
+        margin: 0;
+    }
+    
+    .containerMain {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        color: #4b6584;
+        backdrop-filter: brightness(.65);
+        border-radius: 0;
+        padding: 0 1rem;
+    }
+    
+    h1 {
+        font-family: 'Lato';
+        font-size: 3em;
+        font-weight: bold;
+        margin-bottom: .6em;
+        letter-spacing: .2rem;
+        text-shadow: .1rem -.2rem .2rem #333;
+        margin-top: 2rem;
+    }
+    
+    input {
+        width: 100%;
+        margin: auto;
+        padding: .8rem 1.4rem;
+        border-radius: 2rem;
+        font-family: 'Montserrat';
+        font-size: 1rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        background: #f7f1e3;
+    }
+    
+    input:focus {
+        box-shadow: 0 0 8px .6px #444;
+    }
+    
+    li {
+        font-family: 'Poppins';
+        font-size: 1rem;
+        font-weight: bold;
+        padding: .8rem 1rem;
+        background: #d1d8e0;
+        display: flex;
+        cursor: pointer;
+        opacity: .85;
+        min-height: 2.8rem;
+        max-height: 2.8rem;
+        margin: .08rem 0;
+        border-radius: .6rem;
+    }
+
+    ol {
+        box-shadow: none;
+        max-height: 49.5vh;
+        overflow-y: auto;
+    }
+
+    .proyect-date {
+        width: 20%;
+        text-align: center;
+        letter-spacing: .01rem;
+        font-size: .85rem;
+    }
+    
+    .proyect-name {
+        width: 80%;
+        text-align: left;
+        padding-left: 3rem;
+        font-size: .85rem;
+        text-transform: capitalize;
+        letter-spacing: .01rem;
+    }
+
+    .search-bar i {
+        color: #4b6584;
+        font-size: 1.2rem;
+        position: absolute;
+        right: 0;
+        margin-right: 1.2rem;
+        margin-bottom: .9rem;
+        padding-left: none;
+    }
+
+    .container-change-options-2 {
+        display: flex;
+        justify-content: center;
+        margin-top: 6vh;
+        margin-bottom: 3vh;
+    }
+    .change-options-2 {
+        width: 3.5rem;
+        height: 3.5rem;
+        background: #4b6584;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+}
 
 /*# sourceMappingURL=bundle.css.map*/

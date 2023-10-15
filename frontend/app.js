@@ -1,137 +1,20 @@
 import "./style/normalize.css";
 import "./style/index.css";
 import "./style/indexMin.css";
+import './style/modal.css';
+import './style/alert.css';
 
 import ProyectService from "./service/ProyectService";
+import { burble } from "./js/burble";
+import { alertBtnAdd, alertBtnRm, alertBtnApproved } from "./js/alerts";
 
-particlesJS({
-  particles: {
-    number: {
-      value: 120,
-      density: {
-        enable: true,
-        value_area: 800,
-      },
-    },
-    color: {
-      value: "#4b6584",
-    },
-    shape: {
-      type: "circle",
-      stroke: {
-        width: 0,
-        color: "#000000",
-      },
-      polygon: {
-        nb_sides: 5,
-      },
-      image: {
-        src: "img/github.svg",
-        width: 100,
-        height: 100,
-      },
-    },
-    opacity: {
-      value: 0.8,
-      random: false,
-      anim: {
-        enable: false,
-        speed: 1,
-        opacity_min: 0.1,
-        sync: false,
-      },
-    },
-    size: {
-      value: 4,
-      random: true,
-      anim: {
-        enable: false,
-        speed: 40,
-        size_min: 0.1,
-        sync: false,
-      },
-    },
-    line_linked: {
-      enable: false,
-      distance: 150,
-      color: "#ffffff",
-      opacity: 0.4,
-      width: 1,
-    },
-    move: {
-      enable: true,
-      speed: 6,
-      direction: "none",
-      random: false,
-      straight: false,
-      out_mode: "out",
-      bounce: false,
-      attract: {
-        enable: false,
-        rotateX: 600,
-        rotateY: 1200,
-      },
-    },
-  },
-  interactivity: {
-    detect_on: "canvas",
-    events: {
-      onhover: {
-        enable: false,
-        mode: "repulse",
-      },
-      onclick: {
-        enable: true,
-        mode: "push",
-      },
-      resize: true,
-    },
-    modes: {
-      grab: {
-        distance: 400,
-        line_linked: {
-          opacity: 1,
-        },
-      },
-      bubble: {
-        distance: 400,
-        size: 40,
-        duration: 2,
-        opacity: 8,
-        speed: 3,
-      },
-      repulse: {
-        distance: 200,
-        duration: 0.4,
-      },
-      push: {
-        particles_nb: 4,
-      },
-      remove: {
-        particles_nb: 2,
-      },
-    },
-  },
-  retina_detect: true,
-});
+
+particlesJS(burble)
 
 const proyectService = new ProyectService();
 
-let proyects = [
-  { nombre: "un proyecto", fechaInicio: "12/08/2023" },
-  { nombre: "otro proyecto", fechaInicio: "03/02/2023" },
-  { nombre: "otro proyecto", fechaInicio: "03/02/2023" },
-  { nombre: "otro proyecto", fechaInicio: "03/02/2023" },
-  { nombre: "otro proyecto", fechaInicio: "03/02/2023" },
-  { nombre: "otro proyecto", fechaInicio: "03/02/2023" },
-  { nombre: "otro proyecto", fechaInicio: "03/02/2023" },
-  { nombre: "otro proyecto", fechaInicio: "03/02/2023" },
-  { nombre: "otro proyecto", fechaInicio: "03/02/2023" },
-  { nombre: "otro proyecto", fechaInicio: "03/02/2023" },
-];
-
 document.addEventListener("DOMContentLoaded", async () => {
-  changeSearchPage(proyects);
+  changeSearchPage(await proyectService.getProyects());
 });
 
 function changeSearchPage(proyects) {
@@ -172,13 +55,7 @@ function renderProyect(container, proyect) {
   container.appendChild(createProyectItem(proyect));
 }
 
-async function getProyects() {
-  // const proyects = await proyectService.getProyects();
-  const proyects = [{ nombre: "un proyecto" }, { nombre: "otro proyecto" }];
-  return proyects;
-}
-
-function renderProyects(proyects) {
+async function renderProyects(proyects) {
   const containerProyects = document.getElementById("proyects");
   containerProyects.innerHTML = "";
   proyects.forEach((proyect) => {
@@ -187,7 +64,7 @@ function renderProyects(proyects) {
 }
 
 function alertInformationProyect(proyect) {
-  const { nombre, fechaInicio } = proyect;
+  const { nombre, fechaInicio, etapaComercial } = proyect;
   Swal.fire({
     title: `${nombre}`,
     background: "#4b6584",
@@ -202,11 +79,46 @@ function alertInformationProyect(proyect) {
   const modal = document.createElement("section");
   modal.className = "modal";
   modal.id = `${nombre}`;
+
+  let isV = false
+  let isA = false
+  let isR = false
+
+  switch (etapaComercial) {
+    case ('contacto con cliente'):
+      isR = true
+      break
+    case ('analisis de requerimientos'):
+      isR = true
+      break
+    case ('preparacion de oferta'):
+      isR = true
+      isA = true
+      break
+    case ('negociacion'):
+      isR = true
+      isA = true
+      break
+    case ('inicio'):
+      isR = true
+      isA = true
+      isV = true
+      break
+  }
+
   modal.innerHTML = `
     <div class="border-gradient-modal">
       <div>
         <h2>${nombre}</h2>
         <a id='link-${nombre}' href="#">Close</a>
+        <div class='semaforo' id='semaforo'>
+          <div id='luz-roja' class="${isR ? "brilla-roja" : ''}">
+          </div>
+          <div id='luz-amarilla' class="${isA ? 'brilla-amarilla' : '' }">
+          </div>
+          <div id='luz-verde' class="${isV ? 'brilla-verde' : '' }">
+          </div>
+        </div>
         <div class='container-buttons-modal'>
           <button id='btn-contratos'>Contratos</button>
           <button id='btn-propuestas'>Propuestas</button>
@@ -242,7 +154,7 @@ function alertInformationProyect(proyect) {
 
 const btnChageOption = document.getElementById("btn-change-option");
 
-btnChageOption.addEventListener("click", () => {
+btnChageOption.addEventListener("click", async () => {
   const circle = btnChageOption.childNodes[0];
   const main = document.getElementById("main");
 
@@ -266,7 +178,7 @@ btnChageOption.addEventListener("click", () => {
             <div class="container-change-options-2">
                 <div class="change-options-2"></div>
             </div>`;
-    changeSearchPage(proyects);
+    changeSearchPage(await proyectService.getProyects());
     main.className = "containerMain";
     document.body.style.background = "#f7f1e3";
   } else {
@@ -279,13 +191,200 @@ btnChageOption.addEventListener("click", () => {
                 <h2>Options</h2>
             </div>
             <div class="container-options">
-                <button class="btn-append-proyect">Append</button>
-                <button class="btn-remove-proyect">Remove</button>
-                <button class="btn-remove-proyect">Edit</button>
-                <button class="btn-remove-proyect">Finish</button>
+                <button id='btn-add' class="btn-append-proyect">Append</button>
+                <button id='btn-rm' class="btn-remove-proyect">Remove</button>
+                <button id='btn-approved' class="btn-remove-proyect">Approved</button>
             </div>
         </div>`;
     main.className = "container-main";
     document.body.style.background = "#2f3640";
+    initBtnsOptions()
   }
 });
+
+function getDate() {
+  const date = new Date()
+  const day = date.getDate()
+  const month = parseInt(date.getMonth()) + 1
+  const year = date.getFullYear()
+
+  return `${day}/${month}/${year}`
+}
+
+function existe(proyects, proyectName) {
+  return proyects.find(({ nombre }) => nombre.toLowerCase() === proyectName.toLowerCase()) === undefined ? false : true;
+}
+
+function getProyectByName(proyects, proyectName) {
+  return proyects.find(({ nombre }) => proyectName.toLowerCase() === nombre.toLowerCase())
+}
+function getIdByName(proyects, proyectName) {
+  return (proyects.find(({ nombre }) => nombre.toLowerCase() === proyectName.toLowerCase()))._id;
+}
+
+function initBtnsOptions() {
+  const btnAdd = document.getElementById('btn-add');
+  const btnRm = document.getElementById('btn-rm');
+  const btnApproved = document.getElementById('btn-approved');
+
+  btnAdd.addEventListener('click', () => {
+    Swal.fire(alertBtnAdd)
+    const form = document.getElementById('form-add-proyect');
+    const nameProyect = document.getElementById('name-proyect');
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const nombre = nameProyect.value;
+      const fechaInicio = getDate();
+      const etapaComercial = 'contacto con cliente'
+      const proyect = {
+        nombre,
+        fechaInicio,
+        etapaComercial
+      }
+
+      await proyectService.postProyect(proyect)
+      Swal.close()
+    })
+  })
+
+  btnRm.addEventListener('click', () => {
+    Swal.fire(alertBtnRm);
+    const form = document.getElementById('form-add-proyect');
+    const nameProyect = document.getElementById('name-proyect');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const proyectos = await proyectService.getProyects();
+      const name = nameProyect.value
+      const exist = existe(proyectos, name)
+
+      if (exist) {
+        await proyectService.deleteProyect(getIdByName(proyectos, name))
+        Swal.close()
+      } else {
+        const input = document.getElementById('name-proyect')
+
+        input.className += ' input-error'
+
+        const curretValue = input.value
+
+        input.value = 'El proyecto no existe'
+
+        setTimeout(() => {
+          document.getElementById('name-proyect').className = 'input-name-proyect'
+          input.value = ''
+        }, 3000)
+      }
+    })
+  })
+
+  btnApproved.addEventListener('click', () => {
+    Swal.fire(alertBtnApproved)
+    const form = document.getElementById('form-add-proyect');
+    const nameProyect = document.getElementById('name-proyect');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const proyectos = await proyectService.getProyects();
+      const name = nameProyect.value
+      const exist = existe(proyectos, name)
+      
+      if (exist) {
+        document.getElementById('proyecto-actual').style.display = 'flex'
+        const proyecto = getProyectByName(proyectos, name)
+
+        const textName = document.getElementById('nombre-actual');
+        const textStatus = document.getElementById('etapa-actual');
+        const textDate = document.getElementById('fecha-actual');
+
+        textName.innerHTML = `<span>nombre: </span>${proyecto.nombre}`
+        textStatus.innerHTML = `<span>etapa: </span>${proyecto.etapaComercial}`
+        textDate.innerHTML = `<span>fecha: </span>${proyecto.fechaInicio}`
+
+        const btnId = remplaceChar(proyecto.etapaComercial, ' ', '-')
+        
+        const btnCurrentStatus = document.getElementById(btnId)
+
+        btnCurrentStatus.className += ' etapa-actual'
+
+        const btns = initBtnChangeStatus()
+
+        document.getElementById('form-save').addEventListener('submit', (e) => {
+          e.preventDefault()
+          btns.forEach(async (btn) => {
+            if (btn.className.includes('etapa-actual')) {
+              const etapaComercial = remplaceChar(btn.className.split(' ')[1], '-', ' ')
+
+              await proyectService.approvedProject(proyecto._id, etapaComercial)
+              Swal.close()
+            }
+          })
+        })
+
+      } else {
+        console.log('el proyecto no existe')
+      }
+    })
+  })
+}
+
+
+function remplaceChar(cadena, a, b) {
+  let res = '';
+  for (let c of cadena) {
+    if (c !== a) {
+      res += c;
+    } else {
+      res += b;
+    }
+  }
+  return res;
+}
+
+function getSelectClass(etapa) {
+  return `etapa ${remplaceChar(etapa, ' ', '-')}`
+}
+
+function resetBtnChangeStatus(btns) {
+  btns.forEach((btn) => {
+    btn.className = getSelectClass(btn.id)
+  })
+}
+
+function initBtnChangeStatus() {
+  const btnContacto = document.getElementById('contacto-con-cliente');
+  const btnAnalisis = document.getElementById('analisis-de-requerimientos');
+  const btnOferta = document.getElementById('preparacion-de-oferta');
+  const btnNegociacion = document.getElementById('negociacion');
+  const btnInicio = document.getElementById('inicio');
+
+  const btns = [btnContacto, btnAnalisis, btnOferta, btnNegociacion, btnInicio]
+
+  btnContacto.addEventListener('click', () => {
+    resetBtnChangeStatus(btns)
+    btnContacto.className += ' etapa-actual'
+  })
+
+  btnAnalisis.addEventListener('click', () => {
+    resetBtnChangeStatus(btns)
+    btnAnalisis.className += ' etapa-actual'
+  })
+
+  btnOferta.addEventListener('click', () => {
+    resetBtnChangeStatus(btns)
+    btnOferta.className += ' etapa-actual'
+  })
+
+  btnNegociacion.addEventListener('click', () => {
+    resetBtnChangeStatus(btns)
+    btnNegociacion.className += ' etapa-actual'
+  })
+
+  btnInicio.addEventListener('click', () => {
+    resetBtnChangeStatus(btns)
+    btnInicio.className += ' etapa-actual'
+  })
+
+  return btns
+}

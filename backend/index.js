@@ -21,7 +21,9 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(cors());
 
-app.use('/api/proyects/', require('./routes/proyects.js'));
+app.use(require('./routes/proyects.js'));
+app.use(require('./routes/proyectsApproved.js'));
+
 
 app.use(express.static(path.join(__dirname, 'public')));
 
