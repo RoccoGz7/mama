@@ -2,7 +2,7 @@
 class ProyectService {
 
     constructor() {
-        this.URI = '/api/proyects';
+        this.URI = `${process.env.URL}/api/proyects`;
     }
 
     async getProyects() {
