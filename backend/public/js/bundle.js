@@ -2,6 +2,87 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
+/***/ "./frontend/js/alerts.js":
+/*!*******************************!*\
+  !*** ./frontend/js/alerts.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   alertBtnAdd: () => (/* binding */ alertBtnAdd),
+/* harmony export */   alertBtnApproved: () => (/* binding */ alertBtnApproved),
+/* harmony export */   alertBtnRm: () => (/* binding */ alertBtnRm)
+/* harmony export */ });
+const alertBtnAdd = {
+	showConfirmButton: false,
+	html: `
+		<div class='alert-btn-add'>
+			<h4 class='title-add-proyect'> Nuevo Proyecto </h4>
+			<form id='form-add-proyect'>
+				<input id='name-proyect' class='input-name-proyect' type='text' placeholder='Nombre del proyecto' />
+				<input class='btn-name-proyect' type='submit' value='Crear Proyecto' />
+			</form>
+		</div>`,
+		background: '#2f3640',
+		padding: '1.2rem 1rem'
+}
+
+const alertBtnRm = {
+	showConfirmButton: false,
+	html: `
+		<div class='alert-btn-add'>
+			<h4 class='title-add-proyect'> Eliminar Proyecto </h4>
+			<form id='form-add-proyect'>
+				<input id='name-proyect' class='input-name-proyect' type='text' placeholder='Nombre del proyecto' />
+				<input class='btn-name-proyect' type='submit' value='Borrar Proyecto' />
+			</form>
+		</div>`,
+		background: '#2f3640',
+		padding: '1.2rem 1rem'
+}
+
+const alertBtnApproved = {
+	showConfirmButton: false,
+	html: `
+		<div class='alert-btn-add'>
+			<h4 class='title-add-proyect'> Cambiar Etapa Proyecto </h4>
+			<form id='form-add-proyect'>
+				<input id='name-proyect' class='input-name-proyect' type='text' placeholder='Nombre del proyecto' />
+				<input class='btn-name-proyect' type='submit' value='Buscar Proyecto' />
+			</form>
+			<div id='proyecto-actual'>
+				<p id='nombre-actual'><span>nombre: </span></p>
+				<p id='etapa-actual'><span>etapa: </span></p>
+				<p id='fecha-actual'><span>fecha: </span></p>
+			</div>
+			<div class='etapa-options'>
+				<button id='contacto-con-cliente' class='etapa contacto-con-cliente'>
+					contacto
+				</button>
+				<button id='analisis-de-requerimientos' class='etapa analisis-de-requerimientos'>
+					analisis
+				</button>
+				<button id='preparacion-de-oferta' class='etapa preparacion-de-oferta'>
+					oferta
+				</button>
+				<button id='negociacion' class='etapa negociacion'>
+					negociacion
+				</button>
+				<button id='inicio' class='etapa inicio'>
+					inicio
+				</button>
+			</div>
+			<form id='form-save'>
+				<input class='btn-name-proyect' type='submit' value='Guardar' />
+			</form>
+		</div>`,
+		background: '#2f3640',
+		padding: '1.2rem 1rem'
+}
+
+/***/ }),
+
 /***/ "./frontend/js/burble.js":
 /*!*******************************!*\
   !*** ./frontend/js/burble.js ***!
@@ -139,7 +220,7 @@ __webpack_require__.r(__webpack_exports__);
 class ProyectService {
 
     constructor() {
-        this.URI = 'http://localhost:4000/api/proyects';
+        this.URI = `${process.env.URL}/api/proyects`;
     }
 
     async getProyects() {
@@ -158,27 +239,35 @@ class ProyectService {
     }
 
     async deleteProyect(id) {
-        await fetch(this.URI, {
+        await fetch(`${this.URI}/${id}`, {
             method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ id })
         })
     }
 
-    async approvedProject(id) {
-        await fetch(this.URI, {
+    async approvedProject(id, etapaComercial) {
+        await fetch(`${this.URI}/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ id })
+            body: JSON.stringify({ etapaComercial })
         })
     }
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProyectService);
+
+/***/ }),
+
+/***/ "./frontend/style/alert.css":
+/*!**********************************!*\
+  !*** ./frontend/style/alert.css ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ }),
 
@@ -198,6 +287,18 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************!*\
   !*** ./frontend/style/indexMin.css ***!
   \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./frontend/style/modal.css":
+/*!**********************************!*\
+  !*** ./frontend/style/modal.css ***!
+  \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -284,8 +385,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_normalize_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style/normalize.css */ "./frontend/style/normalize.css");
 /* harmony import */ var _style_index_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./style/index.css */ "./frontend/style/index.css");
 /* harmony import */ var _style_indexMin_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./style/indexMin.css */ "./frontend/style/indexMin.css");
-/* harmony import */ var _service_ProyectService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./service/ProyectService */ "./frontend/service/ProyectService.js");
-/* harmony import */ var _js_burble__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./js/burble */ "./frontend/js/burble.js");
+/* harmony import */ var _style_modal_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./style/modal.css */ "./frontend/style/modal.css");
+/* harmony import */ var _style_alert_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./style/alert.css */ "./frontend/style/alert.css");
+/* harmony import */ var _service_ProyectService__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./service/ProyectService */ "./frontend/service/ProyectService.js");
+/* harmony import */ var _js_burble__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./js/burble */ "./frontend/js/burble.js");
+/* harmony import */ var _js_alerts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./js/alerts */ "./frontend/js/alerts.js");
 
 
 
@@ -293,9 +397,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-particlesJS(_js_burble__WEBPACK_IMPORTED_MODULE_4__.burble)
 
-const proyectService = new _service_ProyectService__WEBPACK_IMPORTED_MODULE_3__["default"]();
+
+
+
+particlesJS(_js_burble__WEBPACK_IMPORTED_MODULE_6__.burble)
+
+const proyectService = new _service_ProyectService__WEBPACK_IMPORTED_MODULE_5__["default"]();
 
 document.addEventListener("DOMContentLoaded", async () => {
   changeSearchPage(await proyectService.getProyects());
@@ -339,8 +447,7 @@ function renderProyect(container, proyect) {
   container.appendChild(createProyectItem(proyect));
 }
 
-async function renderProyects() {
-  const proyects = await proyectService.getProyects()
+async function renderProyects(proyects) {
   const containerProyects = document.getElementById("proyects");
   containerProyects.innerHTML = "";
   proyects.forEach((proyect) => {
@@ -349,7 +456,7 @@ async function renderProyects() {
 }
 
 function alertInformationProyect(proyect) {
-  const { nombre, fechaInicio } = proyect;
+  const { nombre, fechaInicio, etapaComercial } = proyect;
   Swal.fire({
     title: `${nombre}`,
     background: "#4b6584",
@@ -364,11 +471,46 @@ function alertInformationProyect(proyect) {
   const modal = document.createElement("section");
   modal.className = "modal";
   modal.id = `${nombre}`;
+
+  let isV = false
+  let isA = false
+  let isR = false
+
+  switch (etapaComercial) {
+    case ('contacto con cliente'):
+      isR = true
+      break
+    case ('analisis de requerimientos'):
+      isR = true
+      break
+    case ('preparacion de oferta'):
+      isR = true
+      isA = true
+      break
+    case ('negociacion'):
+      isR = true
+      isA = true
+      break
+    case ('inicio'):
+      isR = true
+      isA = true
+      isV = true
+      break
+  }
+
   modal.innerHTML = `
     <div class="border-gradient-modal">
       <div>
         <h2>${nombre}</h2>
         <a id='link-${nombre}' href="#">Close</a>
+        <div class='semaforo' id='semaforo'>
+          <div id='luz-roja' class="${isR ? "brilla-roja" : ''}">
+          </div>
+          <div id='luz-amarilla' class="${isA ? 'brilla-amarilla' : '' }">
+          </div>
+          <div id='luz-verde' class="${isV ? 'brilla-verde' : '' }">
+          </div>
+        </div>
         <div class='container-buttons-modal'>
           <button id='btn-contratos'>Contratos</button>
           <button id='btn-propuestas'>Propuestas</button>
@@ -428,7 +570,7 @@ btnChageOption.addEventListener("click", async () => {
             <div class="container-change-options-2">
                 <div class="change-options-2"></div>
             </div>`;
-    changeSearchPage(await proyects);
+    changeSearchPage(await proyectService.getProyects());
     main.className = "containerMain";
     document.body.style.background = "#f7f1e3";
   } else {
@@ -441,17 +583,203 @@ btnChageOption.addEventListener("click", async () => {
                 <h2>Options</h2>
             </div>
             <div class="container-options">
-                <button class="btn-append-proyect">Append</button>
-                <button class="btn-remove-proyect">Remove</button>
-                <button class="btn-remove-proyect">Edit</button>
-                <button class="btn-remove-proyect">Finish</button>
+                <button id='btn-add' class="btn-append-proyect">Append</button>
+                <button id='btn-rm' class="btn-remove-proyect">Remove</button>
+                <button id='btn-approved' class="btn-remove-proyect">Approved</button>
             </div>
         </div>`;
     main.className = "container-main";
     document.body.style.background = "#2f3640";
+    initBtnsOptions()
   }
 });
 
+function getDate() {
+  const date = new Date()
+  const day = date.getDate()
+  const month = parseInt(date.getMonth()) + 1
+  const year = date.getFullYear()
+
+  return `${day}/${month}/${year}`
+}
+
+function existe(proyects, proyectName) {
+  return proyects.find(({ nombre }) => nombre.toLowerCase() === proyectName.toLowerCase()) === undefined ? false : true;
+}
+
+function getProyectByName(proyects, proyectName) {
+  return proyects.find(({ nombre }) => proyectName.toLowerCase() === nombre.toLowerCase())
+}
+function getIdByName(proyects, proyectName) {
+  return (proyects.find(({ nombre }) => nombre.toLowerCase() === proyectName.toLowerCase()))._id;
+}
+
+function initBtnsOptions() {
+  const btnAdd = document.getElementById('btn-add');
+  const btnRm = document.getElementById('btn-rm');
+  const btnApproved = document.getElementById('btn-approved');
+
+  btnAdd.addEventListener('click', () => {
+    Swal.fire(_js_alerts__WEBPACK_IMPORTED_MODULE_7__.alertBtnAdd)
+    const form = document.getElementById('form-add-proyect');
+    const nameProyect = document.getElementById('name-proyect');
+    
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const nombre = nameProyect.value;
+      const fechaInicio = getDate();
+      const etapaComercial = 'contacto con cliente'
+      const proyect = {
+        nombre,
+        fechaInicio,
+        etapaComercial
+      }
+
+      await proyectService.postProyect(proyect)
+      Swal.close()
+    })
+  })
+
+  btnRm.addEventListener('click', () => {
+    Swal.fire(_js_alerts__WEBPACK_IMPORTED_MODULE_7__.alertBtnRm);
+    const form = document.getElementById('form-add-proyect');
+    const nameProyect = document.getElementById('name-proyect');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const proyectos = await proyectService.getProyects();
+      const name = nameProyect.value
+      const exist = existe(proyectos, name)
+
+      if (exist) {
+        await proyectService.deleteProyect(getIdByName(proyectos, name))
+        Swal.close()
+      } else {
+        const input = document.getElementById('name-proyect')
+
+        input.className += ' input-error'
+
+        const curretValue = input.value
+
+        input.value = 'El proyecto no existe'
+
+        setTimeout(() => {
+          document.getElementById('name-proyect').className = 'input-name-proyect'
+          input.value = ''
+        }, 3000)
+      }
+    })
+  })
+
+  btnApproved.addEventListener('click', () => {
+    Swal.fire(_js_alerts__WEBPACK_IMPORTED_MODULE_7__.alertBtnApproved)
+    const form = document.getElementById('form-add-proyect');
+    const nameProyect = document.getElementById('name-proyect');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const proyectos = await proyectService.getProyects();
+      const name = nameProyect.value
+      const exist = existe(proyectos, name)
+      
+      if (exist) {
+        document.getElementById('proyecto-actual').style.display = 'flex'
+        const proyecto = getProyectByName(proyectos, name)
+
+        const textName = document.getElementById('nombre-actual');
+        const textStatus = document.getElementById('etapa-actual');
+        const textDate = document.getElementById('fecha-actual');
+
+        textName.innerHTML = `<span>nombre: </span>${proyecto.nombre}`
+        textStatus.innerHTML = `<span>etapa: </span>${proyecto.etapaComercial}`
+        textDate.innerHTML = `<span>fecha: </span>${proyecto.fechaInicio}`
+
+        const btnId = remplaceChar(proyecto.etapaComercial, ' ', '-')
+        
+        const btnCurrentStatus = document.getElementById(btnId)
+
+        btnCurrentStatus.className += ' etapa-actual'
+
+        const btns = initBtnChangeStatus()
+
+        document.getElementById('form-save').addEventListener('submit', (e) => {
+          e.preventDefault()
+          btns.forEach(async (btn) => {
+            if (btn.className.includes('etapa-actual')) {
+              const etapaComercial = remplaceChar(btn.className.split(' ')[1], '-', ' ')
+
+              await proyectService.approvedProject(proyecto._id, etapaComercial)
+              Swal.close()
+            }
+          })
+        })
+
+      } else {
+        console.log('el proyecto no existe')
+      }
+    })
+  })
+}
+
+
+function remplaceChar(cadena, a, b) {
+  let res = '';
+  for (let c of cadena) {
+    if (c !== a) {
+      res += c;
+    } else {
+      res += b;
+    }
+  }
+  return res;
+}
+
+function getSelectClass(etapa) {
+  return `etapa ${remplaceChar(etapa, ' ', '-')}`
+}
+
+function resetBtnChangeStatus(btns) {
+  btns.forEach((btn) => {
+    btn.className = getSelectClass(btn.id)
+  })
+}
+
+function initBtnChangeStatus() {
+  const btnContacto = document.getElementById('contacto-con-cliente');
+  const btnAnalisis = document.getElementById('analisis-de-requerimientos');
+  const btnOferta = document.getElementById('preparacion-de-oferta');
+  const btnNegociacion = document.getElementById('negociacion');
+  const btnInicio = document.getElementById('inicio');
+
+  const btns = [btnContacto, btnAnalisis, btnOferta, btnNegociacion, btnInicio]
+
+  btnContacto.addEventListener('click', () => {
+    resetBtnChangeStatus(btns)
+    btnContacto.className += ' etapa-actual'
+  })
+
+  btnAnalisis.addEventListener('click', () => {
+    resetBtnChangeStatus(btns)
+    btnAnalisis.className += ' etapa-actual'
+  })
+
+  btnOferta.addEventListener('click', () => {
+    resetBtnChangeStatus(btns)
+    btnOferta.className += ' etapa-actual'
+  })
+
+  btnNegociacion.addEventListener('click', () => {
+    resetBtnChangeStatus(btns)
+    btnNegociacion.className += ' etapa-actual'
+  })
+
+  btnInicio.addEventListener('click', () => {
+    resetBtnChangeStatus(btns)
+    btnInicio.className += ' etapa-actual'
+  })
+
+  return btns
+}
 })();
 
 /******/ })()
